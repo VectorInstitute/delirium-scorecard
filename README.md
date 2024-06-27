@@ -62,25 +62,25 @@ This project is divided into two main directories: `frontend` for the Next.js ap
 
 frontend/
 ├── src/
-│ ├── components/
-│ │ ├── DeliriumRates.tsx
-│ │ ├── TimeTrends.tsx
-│ │ ├── PatientDemographics.tsx
-│ │ ├── Sidebar.tsx
-│ │ └── Layout.tsx
-│ ├── app/
-│ │ ├── page.tsx
-│ │ ├── layout.tsx
-│ │ ├── ThemeRegistry.tsx
-│ │ ├── globals.css
-│ │ └── faq/
-| │ │ ├── layout.tsx
-| │ │ ├── page.tsx
-| │ │ ├── error.tsx
-| │ │ ├── loading.tsx
+│   ├── components/
+│   │   ├── DeliriumRates.tsx
+│   │   ├── TimeTrends.tsx
+│   │   ├── PatientDemographics.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── Layout.tsx
+│   ├── app/
+│   │   ├── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── ThemeRegistry.tsx
+│   │   ├── globals.css
+│   │   └── faq/
+│   │       ├── layout.tsx
+│   │       ├── page.tsx
+│   │       ├── error.tsx
+│   │       └── loading.tsx
 ├── theme.ts
 ├── public/
-│ └── images/
+│   └── images/
 ├── package.json
 └── next.config.mjs
 
@@ -92,9 +92,9 @@ frontend/
 
 backend/
 ├── api/
-│ ├── main.py
-│ ├── routes.py
-│ ├── delirium.py
+│   ├── main.py
+│   ├── routes.py
+│   └── delirium.py
 
 ## Contributing
 
