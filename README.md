@@ -60,6 +60,7 @@ This project is divided into two main directories: `frontend` for the Next.js ap
 
 ### Frontend (Next.js)
 
+```
 frontend/
 ├── src/
 │   ├── components/
@@ -83,6 +84,7 @@ frontend/
 │   └── images/
 ├── package.json
 └── next.config.mjs
+```
 
 - `components/`: Reusable React components
 - `app/`: Next.js pages and routing
@@ -90,11 +92,13 @@ frontend/
 
 ### Backend (FastAPI)
 
+```
 backend/
 ├── api/
 │   ├── main.py
 │   ├── routes.py
 │   └── delirium.py
+```
 
 ## Contributing
 
