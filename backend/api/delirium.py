@@ -1,6 +1,7 @@
 """Delirium rates API endpoints."""
 
-from typing import List, Dict
+from typing import Dict, List
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 

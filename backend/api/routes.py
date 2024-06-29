@@ -6,8 +6,8 @@ from fastapi import APIRouter
 
 from backend.api.delirium import (
     get_delirium_rates,
-    get_time_trends,
     get_patient_demographics,
+    get_time_trends,
 )
 
 
