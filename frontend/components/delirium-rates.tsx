@@ -1,22 +1,26 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Box, CircularProgress, Typography, Alert } from '@mui/material';
+import { Box, CircularProgress, Typography, Alert, useTheme, useMediaQuery } from '@mui/material';
 
 interface DeliriumRate {
   quarter: string;
+  year: number;
   rate: number;
+  ward: string;
 }
 
 const DeliriumRates: React.FC = () => {
   const [rates, setRates] = useState<DeliriumRate[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/delirium/rates');
+        const response = await fetch('/api/rates');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -34,40 +38,32 @@ const DeliriumRates: React.FC = () => {
   }, []);
 
   const getColor = (rate: number): string => {
-    if (rate > 30) return '#ff6b6b';
-    if (rate > 20) return '#feca57';
-    return '#48dbfb';
+    if (rate > 30) return theme.palette.error.main;
+    if (rate > 20) return theme.palette.warning.main;
+    return theme.palette.success.main;
   };
 
-  if (loading) {
-    return <CircularProgress />;
-  }
-
-  if (error) {
-    return <Alert severity="error">{error}</Alert>;
-  }
+  if (loading) return <CircularProgress />;
+  if (error) return <Alert severity="error">{error}</Alert>;
 
   return (
-    <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-        {rates.map((item) => (
-          <Box key={item.quarter} sx={{ position: 'relative', display: 'inline-flex' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+      {rates.map((item) => (
+        <Box key={`${item.quarter}-${item.year}`} sx={{ m: 2, textAlign: 'center' }}>
+          <Box sx={{ position: 'relative', display: 'inline-flex' }}>
             <CircularProgress
               variant="determinate"
               value={100}
-              size={240}
-              thickness={8}
-              sx={{
-                color: '#f0f0f0', // Light grey color for the background
-                position: 'absolute',
-              }}
+              size={isLargeScreen ? 200 : 150}
+              thickness={5}
+              sx={{ color: theme.palette.grey[200] }}
             />
             <CircularProgress
               variant="determinate"
               value={item.rate}
-              size={240}
-              thickness={8}
-              sx={{ color: getColor(item.rate) }}
+              size={isLargeScreen ? 200 : 150}
+              thickness={5}
+              sx={{ color: getColor(item.rate), position: 'absolute', left: 0 }}
             />
             <Box
               sx={{
@@ -81,16 +77,16 @@ const DeliriumRates: React.FC = () => {
                 justifyContent: 'center',
               }}
             >
-              <Typography variant="caption" component="div" color="text.secondary">
+              <Typography variant="h4" component="div" color="text.secondary">
                 {`${item.rate}%`}
               </Typography>
             </Box>
-            <Typography variant="subtitle1" sx={{ mt: 1, textAlign: 'center' }}>
-              {item.quarter}
-            </Typography>
           </Box>
-        ))}
-      </Box>
+          <Typography variant="subtitle1" sx={{ mt: 1 }}>
+            {`${item.quarter} ${item.year}`}
+          </Typography>
+        </Box>
+      ))}
     </Box>
   );
 };

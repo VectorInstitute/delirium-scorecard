@@ -3,8 +3,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import './globals.css';
-import ThemeRegistry from './ThemeRegistry';
-import Sidebar from '../components/Sidebar';
+import ThemeRegistry from './theme-registry';
+import Sidebar from '../components/sidebar';
+import { AuthProvider } from './context/auth';
 
 export const metadata = {
   title: 'Delirium Scorecard',
@@ -22,12 +23,14 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeRegistry>
             <CssBaseline />
+            <AuthProvider>
             <Box sx={{ display: 'flex' }}>
               <Sidebar />
-              <Box component="main" sx={{ flexGrow: 1, p: 3, ml: '240px' }}>
+              <Box component="main" sx={{ flexGrow: 1, p: 3, ml: '8px' }}>
                 {children}
+                </Box>
               </Box>
-            </Box>
+            </AuthProvider>
           </ThemeRegistry>
         </AppRouterCacheProvider>
       </body>

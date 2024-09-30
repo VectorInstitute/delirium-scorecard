@@ -13,7 +13,7 @@ export default function FAQLayout({
         sx={{
           flexGrow: 1,
           p: 3,
-          ml: '-500px', // Adjust this value to match your sidebar width
+          ml: '-8x', // Adjust this value to match your sidebar width
           width: { sm: `calc(100%)` },
         }}
       >

@@ -1,16 +1,28 @@
 [tool.poetry]
-name = "backend"
+name = "delirium_scorecard"
 version = "0.1.0"
 description = "Backend for the delirium scorecard application"
-authors = ["Your Name <you@example.com>"]
+authors = ["Vector Institute <ai_engineering@vectorinstitute.ai>"]
+repository = "https://github.com/VectorInstitute/delirium-scorecard"
 license = "Apache-2.0"
+packages = [
+    { include = "api/" },
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
 fastapi = "^0.111.0"
-uvicorn = "^0.30.1"
 pydantic = "^2.7.4"
+uvicorn = "^0.30.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+bcrypt = "3.2.0"
+passlib = "^1.7.4"
+pyjwt = "^2.9.0"
+sqlalchemy = { version = "^2.0.32", extras = ["asyncio"] }
+aiosqlite = "^0.20.0"
+pandas = "^2.2.3"
+minio = "^7.2.9"
 
 [tool.poetry.group.test]
 optional = true
