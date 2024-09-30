@@ -1,16 +1,10 @@
-import React from 'react';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import './globals.css';
-import ThemeRegistry from './theme-registry';
-import Sidebar from '../components/sidebar';
-import { AuthProvider } from './context/auth';
+'use client'
 
-export const metadata = {
-  title: 'Delirium Scorecard',
-  description: 'Sunnybrook Hospital Delirium Scorecard',
-};
+import React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../theme';
+import { AuthProvider } from './context/auth';
 
 export default function RootLayout({
   children,
@@ -20,20 +14,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppRouterCacheProvider>
-          <ThemeRegistry>
-            <CssBaseline />
-            <AuthProvider>
-            <Box sx={{ display: 'flex' }}>
-              <Sidebar />
-              <Box component="main" sx={{ flexGrow: 1, p: 3, ml: '8px' }}>
-                {children}
-                </Box>
-              </Box>
-            </AuthProvider>
-          </ThemeRegistry>
-        </AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

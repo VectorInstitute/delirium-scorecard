@@ -27,7 +27,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated()) {
-      router.replace('/home')
+      router.replace('/dashboard')
     }
   }, [isAuthenticated, isLoading, router])
 
@@ -73,8 +73,8 @@ export default function LoginPage() {
       <Box width="full" maxWidth="400px" mt={8} p={6} borderRadius="md" boxShadow="lg" bg="white">
         <Flex direction="column" align="center" mb={6}>
           <Logo
-            src="/images/odyssey_logo.gif"
-            alt="Cyclops Logo"
+            src="/images/gemini_logo.svg"
+            alt="Gemini Logo"
             width={240}
             height={240}
             priority={true}
